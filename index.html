@@ -6,94 +6,103 @@
 
 <style>
 
-body{
-
-background:#000;
-
-color:white;
-
-font-family:sans-serif;
-
-display:flex;
-
-justify-content:center;
-
-align-items:center;
-
-height:100vh;
-
-flex-direction:column;
-
-}
-
-h1{
-
-font-size:45px;
-
-}
-
-</style>
-
-</head>
-
 <body>
 
 <h1>NOW LOADING...</h1>
 
-<p>Loading Audio...</p>
+<h3>-1111日目の兄弟-</h3>
 
-<audio id="player" controls autoplay></audio>
+<img src="img/flyer.jpg"
+     width="300"
+     style="border-radius:12px;box-shadow:0 0 20px rgba(255,255,255,.2);">
 
-  <div id="finish" style="display:none; text-align:center; margin-top:40px;">
+<br><br>
+
+<button id="startBtn">
+▶ START
+</button>
+
+<br>
+
+<audio id="player" controls style="display:none;"></audio>
+
+<div id="finish" style="display:none;">
 
 <hr>
 
-<h2>ご視聴ありがとうございました。</h2>
+<h2>ご視聴ありがとうございました！</h2>
 
 <p>
+
 こちらはSAMPLE音声です。<br><br>
 
-劇場では各キャラクター5種類の<br>
-限定ボイスをご用意しております。<br><br>
+本公演では<br>
+各キャラクター5種類の限定音声を<br>
+ご用意しております。
 
-ぜひ劇場でお楽しみください。
 </p>
 
 <br>
 
-<button onclick="location.reload()">
-▶ もう一度聞く
+<a
+href="https://livepocket.jp/e/livste_nowloading2026"
+target="_blank">
+
+<button
+style="font-size:22px;padding:18px 40px;cursor:pointer;">
+
+🎫 チケット購入はこちら
+
 </button>
 
+</a>
+
+<br><br>
+
+<button onclick="location.reload()">
+
+🔄 もう一度聞く
+
+</button>
 
 </div>
 
 <script>
 const audioFiles = [
-
-"daichi.wav",
-
-"akari.wav"
-
+    "audio/daichi.wav",
+    "audio/jun.wav",
+    "audio/akari.wav",
+    "audio/hojo.wav",
+    "audio/shinohara.wav"
 ];
 
-const randomIndex=Math.floor(Math.random()*audioFiles.length);
+const startBtn = document.getElementById("startBtn");
+const player = document.getElementById("player");
+const finish = document.getElementById("finish");
 
-const player=document.getElementById("player");
+startBtn.onclick = () => {
 
-player.src=audioFiles[randomIndex]+"?"+Date.now();
+    startBtn.style.display="none";
 
-player.load();
+    player.style.display="block";
 
-player.play();
+    const random = Math.floor(Math.random()*audioFiles.length);
 
-player.onended=function(){
+    player.src = audioFiles[random] + "?v=" + Date.now();
 
-document.getElementById("finish").style.display="block";
+    player.load();
 
-}
+    player.play();
+
+};
+
+player.onended = ()=>{
+
+    finish.style.display="block";
+
+};
 </script>
-
+  
 </body>
 
 
