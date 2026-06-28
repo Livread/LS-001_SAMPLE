@@ -1,10 +1,58 @@
 <!DOCTYPE html>
 <html lang="ja">
+
 <head>
 <meta charset="UTF-8">
 <title>NOW LOADING...</title>
 
 <style>
+
+body{
+    background:#000;
+    color:white;
+    font-family:sans-serif;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    flex-direction:column;
+    min-height:100vh;
+    margin:0;
+}
+
+h1{
+    font-size:50px;
+    margin-bottom:5px;
+}
+
+h3{
+    font-weight:normal;
+    margin-top:0;
+    margin-bottom:25px;
+}
+
+button{
+    padding:15px 35px;
+    font-size:20px;
+    cursor:pointer;
+    border:none;
+    border-radius:8px;
+}
+
+#finish{
+    display:none;
+    text-align:center;
+    margin-top:40px;
+}
+
+img{
+    width:300px;
+    border-radius:12px;
+    box-shadow:0 0 20px rgba(255,255,255,.2);
+}
+
+</style>
+
+</head>
 
 <body>
 
@@ -12,9 +60,7 @@
 
 <h3>-1111日目の兄弟-</h3>
 
-<img src="flyer.jpg"
-     width="300"
-     style="border-radius:12px;box-shadow:0 0 20px rgba(255,255,255,.2);">
+<img src="flyer.jpg">
 
 <br><br>
 
@@ -26,9 +72,9 @@
 
 <audio id="player" controls style="display:none;"></audio>
 
-<div id="finish" style="display:none;">
+<div id="finish">
 
-<hr>
+<hr style="width:80%;">
 
 <h2>ご視聴ありがとうございました！</h2>
 
@@ -38,18 +84,17 @@
 
 本公演では<br>
 各キャラクター5種類の限定音声を<br>
-ご用意しております。
+ご用意しております。<br><br>
+
+ぜひ劇場でお楽しみください！
 
 </p>
 
 <br>
 
-<a
-href="https://livepocket.jp/e/livste_nowloading2026"
-target="_blank">
+<a href="https://livepocket.jp/e/livste_nowloading2026" target="_blank">
 
-<button
-style="font-size:22px;padding:18px 40px;cursor:pointer;">
+<button style="background:#ffcc00;color:#000;font-weight:bold;">
 
 🎫 チケット購入はこちら
 
@@ -68,47 +113,48 @@ style="font-size:22px;padding:18px 40px;cursor:pointer;">
 </div>
 
 <script>
+
 const audioFiles = [
-    "audio/daichi.wav",
-    "audio/jun.wav",
-    "audio/akari.wav",
-    "audio/hojo.wav",
-    "audio/shinohara.wav"
+
+"daichi.wav",
+
+"akari.wav"
+
 ];
 
-const startBtn = document.getElementById("startBtn");
-const player = document.getElementById("player");
-const finish = document.getElementById("finish");
+// ボタン
+const startBtn=document.getElementById("startBtn");
 
-startBtn.onclick = () => {
+// プレイヤー
+const player=document.getElementById("player");
+
+// 終了画面
+const finish=document.getElementById("finish");
+
+startBtn.onclick=function(){
 
     startBtn.style.display="none";
 
     player.style.display="block";
 
-    const random = Math.floor(Math.random()*audioFiles.length);
+    const random=Math.floor(Math.random()*audioFiles.length);
 
-    player.src = audioFiles[random] + "?v=" + Date.now();
+    player.src=audioFiles[random]+"?"+Date.now();
 
     player.load();
 
     player.play();
 
-};
+}
 
-player.onended = ()=>{
+player.onended=function(){
 
     finish.style.display="block";
 
-};
+}
+
 </script>
-  
+
 </body>
-
-
-
-
-
-  
 
 </html>
