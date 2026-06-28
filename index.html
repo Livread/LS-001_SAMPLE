@@ -46,20 +46,28 @@ font-size:45px;
 
 <script>
 
-const audio=[
-
-"daichi.wav",
-
-"akari.wav",
-
+const audio = [
+  "daichi.wav",
+  "akari.wav"
 ];
 
-const random=Math.floor(Math.random()*audio.length);
+const random = Math.floor(Math.random() * audio.length);
 
-document.getElementById("player").src=audio[random];
+const player = document.getElementById("player");
+
+// キャッシュ防止
+player.src = audio[random] + "?v=" + Date.now();
+
+console.log("再生中:", audio[random]);
 
 </script>
 
 </body>
+
+
+
+
+
+  
 
 </html>
