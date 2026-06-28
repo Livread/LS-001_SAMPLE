@@ -44,34 +44,60 @@ font-size:45px;
 
 <audio id="player" controls autoplay></audio>
 
-<script>
+  <div id="finish" style="display:none; text-align:center; margin-top:40px;">
 
+<hr>
+
+<h2>ご視聴ありがとうございました。</h2>
+
+<p>
+こちらはSAMPLE音声です。<br><br>
+
+劇場では各キャラクター5種類の<br>
+限定ボイスをご用意しております。<br><br>
+
+ぜひ劇場でお楽しみください。
+</p>
+
+<br>
+
+<button onclick="location.reload()">
+▶ もう一度聞く
+</button>
+
+
+</div>
+
+<script>
 const audioFiles = [
-  "daichi.wav",
-  "akari.wav"
+
+"daichi.wav",
+
+"jun.wav",
+
+"akari.wav",
+
+"hojo.wav",
+
+"shinohara.wav"
+
 ];
 
-// ランダムに1つ選ぶ
-const randomIndex = Math.floor(Math.random() * audioFiles.length);
-const selectedAudio = audioFiles[randomIndex];
+const randomIndex=Math.floor(Math.random()*audioFiles.length);
 
-// デバッグ表示
-console.log("選ばれた音声:", selectedAudio);
+const player=document.getElementById("player");
 
-// プレイヤー取得
-const player = document.getElementById("player");
+player.src=audioFiles[randomIndex]+"?"+Date.now();
 
-// キャッシュ防止
-player.src = selectedAudio + "?t=" + new Date().getTime();
-
-// 読み込み
 player.load();
 
-// 自動再生（失敗してもエラーを出さない）
-player.play().catch(() => {
-  console.log("自動再生できませんでした");
-});
+player.play();
 
+player.onended=function(){
+
+document.getElementById("finish").style.display="block";
+
+}
 </script>
 
 </body>
